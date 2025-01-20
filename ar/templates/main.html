@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <style>
+        .container {
+            display: flex;
+            gap: 20px; /* 調整間距 */
+            align-items: flex-start;
+        }
+        .textarea-group {
+            display: flex;
+            flex-direction: column;
+            width: 550px; /* 調整寬度 */
+        }
+        textarea{
+            height: 600px; /* 調整高度 */
+        }
+    </style>
+</head>
+<body>
+        <form method="POST" enctype="multipart/form-data" autocomplete="off">
+        {% csrf_token %}
+            <input type="text" name="user_question" placeholder="enter your question" style="width: 450px"><br>
+            <label>(optional) picture upload</label>
+            <input type="file" name="user_image"> <br>
+            <input type="submit" name="send" value="send"/><br>
+            <br><br>
+            {% if md_ans_rag %}
+                <div class="container">
+                    <!--
+                    <div class="textarea-group">
+                        <label> Answer (RAG): </label><br>
+                        <textarea>{{ ans_rag }}</textarea><br><br>
+                    </div>
+                    <div class="textarea-group">
+                        <label> Answer (normal): </label><br>
+                        <textarea>{{ ans_normal }}</textarea>
+                    </div>
+                    -->
+                    <div class="textarea-group">
+                        <label> Answer (RAG): </label><br>
+                        <div>{{ md_ans_rag|safe }}</div>
+                    </div>
+                    <div class="textarea-group">
+                        <label> Answer (normal): </label><br>
+                        <div>{{ md_ans_normal|safe }}</div>
+                    </div>
+                </div>
+            {% endif %}
+    </form>
+</body>
+</html>
