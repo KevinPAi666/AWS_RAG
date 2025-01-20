@@ -13,7 +13,7 @@ import os, datetime, uuid, markdown, re
 
 
 load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("openai")
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 embeddings = OpenAIEmbeddings()
 
 
